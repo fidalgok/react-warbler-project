@@ -8,7 +8,7 @@ exports.createMessage = function(req,res,next){
   
   db.Message.create(newMessage).then(function(message){
     db.User.findById(req.params.id).then(function(user){
-      user.messages.push(message.id)
+      user.messages.push(message._id)
       user.save().then(function(user) {
         return db.Message.findById(message._id)
           .populate("userId", {username: true, profileImageUrl: true})
