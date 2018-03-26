@@ -36,7 +36,7 @@ userSchema.pre("save", async function(next) {
 });
 
 //add an instance method to our schema
-userSchema.method.comparePassword = async function(candidatePassword, next) {
+userSchema.methods.comparePassword = async function(candidatePassword, next) {
   try {
     let isMatch = await bcrypt.compare(candidatePassword, this.password);
     return isMatch;
