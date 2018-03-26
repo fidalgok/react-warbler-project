@@ -1,9 +1,8 @@
 var express = require("express");
-var router = express.Router({mergeParams: true});
+var router = express.Router({ mergeParams: true });
 var db = require("../models");
-var helpers = require('../helpers/messages');
+var handlers = require("../handlers/messages");
 
-router.post('/', helpers.createMessage);
-
+router.post("/", handlers.createMessage);
 
 module.exports = router;

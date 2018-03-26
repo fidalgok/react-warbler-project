@@ -18,7 +18,13 @@ const userSchema = new mongoose.Schema({
   },
   profileImageUrl: {
     type: String
-  }
+  },
+  messages: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Message"
+    }
+  ]
 });
 
 //create a hook to do something to our user before saving to the DB

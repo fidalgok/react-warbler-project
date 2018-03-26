@@ -5,6 +5,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const errorHandler = require("./handlers/error");
 const authRoutes = require("./routes/auth");
+const messagesRoutes = require("./routes/messages");
+const { loginRequired, ensureCorrectUser } = require("./middleware/auth");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -15,6 +17,12 @@ app.get("/", function(req, res) {
 
 //all routes here
 app.use("/api/auth", authRoutes);
+app.use(
+  "/api/users/:id/messages",
+  loginRequired,
+  ensureCorrectUser,
+  messagesRoutes
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
